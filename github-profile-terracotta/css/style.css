@@ -1,0 +1,600 @@
+/* Global Styles */
+:root {
+    --color-terracotta: #FF0033;
+    /* Strawberry Red */
+    --color-terracotta-dark: #cc0000;
+    /* Darker Red */
+    --color-terracotta-light: #ffcccc;
+    /* Pink */
+    /* Darker tint for dark mode */
+    --color-black: #D50032;
+    /* Main text is now Red */
+    /* Text is now light */
+    --color-dark-grey: #990022;
+    /* Accents dark red */
+    --color-grey: #cc3333;
+    --color-light-grey: #ffb3b3;
+    /* Light pinkish grey */
+    /* Borders now dark */
+    --color-white: #FFFFFF;
+    /* Cards now dark grey */
+    --color-bg: #FFC0CB;
+    /* Main background pink */
+
+    --font-primary: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    --border-radius: 8px;
+    --box-shadow: 0 4px 15px rgba(255, 0, 51, 0.2);
+    /* Pink shadow */
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-bg);
+    /* Pink */
+    color: var(--color-black);
+    line-height: 1.6;
+    background-color: #ffc0cb;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-sm);
+}
+
+/* Header Section */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeIn 0.8s ease-out;
+    /* Removed card styles: padding, border, background, shadow, etc. */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* No specific changes needed for mobile as default is now stack */
+}
+
+.profile-avatar {
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    flex-shrink: 0;
+}
+
+#avatar {
+    width: 150px;
+    /* Restored original size */
+    height: 150px;
+    border: 4px solid var(--color-terracotta);
+    padding: 5px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.profile-info {
+    /* flex-grow: 1; Removed */
+}
+
+/* Cleanup old selectors if necessary */
+.profile-avatar img {
+    /* Redundant selector cleanup */
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.profile-name {
+    font-size: 3.5rem;
+    /* Larger for impact */
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--color-terracotta);
+    /* Solid color, no sparkle */
+    /* background: none; Removed gradient */
+    /* background: linear-gradient(45deg, var(--color-terracotta), #ffffff, var(--color-terracotta)); */
+    /* background-size: 200% auto; */
+    /* -webkit-background-clip: border-box; */
+    /* -webkit-background-clip: text; */
+    /* background-clip: border-box; */
+    /* background-clip: text; */
+    animation: floatText 3s ease-in-out infinite;
+    /* Keep float, remove gradientFly */
+    letter-spacing: -1px;
+
+    /* Text Reveal Effect */
+    position: relative;
+    display: inline-block;
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+    /* Start hidden at bottom */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: textReveal 2s cubic-bezier(0.5, 0, 0.1, 1) forwards;
+    animation-delay: 0.5s;
+    /* width: auto; Reset width */
+    border-right: none;
+}
+
+/* Reveal Animation */
+@keyframes textReveal {
+    0% {
+        clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        /* Full reveal */
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes floatText {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Kinetic reveal for other text */
+.profile-handle,
+.profile-bio,
+.stat-item {
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0;
+    /* Start hidden */
+    transform: translateY(20px);
+}
+
+.profile-handle {
+    animation-delay: 0.2s;
+}
+
+.profile-bio {
+    animation-delay: 0.4s;
+}
+
+.stat-item {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-handle {
+    font-size: 1.2rem;
+    color: var(--color-grey);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 300;
+}
+
+.profile-bio {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-md);
+    max-width: 600px;
+}
+
+.profile-stats {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    justify-content: center;
+    /* Center on mobile */
+}
+
+@media (min-width: 768px) {
+    .profile-stats {
+        justify-content: flex-start;
+    }
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center on mobile */
+}
+
+@media (min-width: 768px) {
+    .stat-item {
+        align-items: flex-start;
+    }
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--color-black);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--color-grey);
+}
+
+.profile-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    /* Center on mobile */
+}
+
+@media (min-width: 768px) {
+    .profile-actions {
+        justify-content: flex-start;
+    }
+}
+
+/* Buttons */
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--color-terracotta);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-terracotta-dark);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--color-terracotta);
+    color: var(--color-terracotta);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-terracotta-light);
+    transform: translateY(-2px);
+}
+
+/* Pinned Repos Section */
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-light-grey);
+    padding-bottom: var(--spacing-xs);
+    display: inline-block;
+}
+
+.repo-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    .repo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.repo-card {
+    border: 1px solid var(--color-light-grey);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    background-color: var(--color-white);
+    transition: var(--transition);
+}
+
+.repo-card:hover {
+    border-color: var(--color-terracotta);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    /* Deeper shadow */
+    transform: translateY(-5px) scale(1.02);
+    /* Kinetic lift */
+}
+
+.repo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
+}
+
+.repo-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.repo-header h3 a {
+    color: var(--color-terracotta);
+}
+
+.repo-header h3 a:hover {
+    text-decoration: underline;
+}
+
+.repo-visibility {
+    font-size: 0.75rem;
+    border: 1px solid var(--color-light-grey);
+    padding: 0.1rem 0.5rem;
+    border-radius: 12px;
+    color: var(--color-grey);
+}
+
+.repo-description {
+    font-size: 0.95rem;
+    color: var(--color-dark-grey);
+    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    height: 3.2rem;
+    /* Height for exactly 2 lines (0.95rem * 1.6 * 2) */
+    overflow: hidden;
+    /* Removed non-standard webkit-line-clamp to avoid linter warnings. 
+       Text will be cut off at the bottom of the container. */
+}
+
+.repo-meta {
+    display: flex;
+    gap: var(--spacing-md);
+    font-size: 0.85rem;
+    color: var(--color-grey);
+}
+
+.repo-lang {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.lang-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Contributions Section */
+.contributions {
+    margin-top: var(--spacing-xl);
+}
+
+.graph-placeholder {
+    border: 1px solid var(--color-light-grey);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    text-align: center;
+    background-color: var(--color-terracotta-light);
+    color: var(--color-terracotta-dark);
+}
+
+/* Footer */
+.main-footer {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+    color: var(--color-grey);
+    font-size: 0.9rem;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-light-grey);
+}
+
+.heart {
+    color: var(--color-terracotta);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sparkle Effect */
+.sparkle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
+    z-index: 9999;
+    animation: sparkle-animation 2s linear forwards;
+}
+
+@keyframes sparkle-animation {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.5) rotate(180deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Fountain Particle */
+.fountain-particle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-terracotta);
+    /* Terracotta drops */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    box-shadow: 0 0 4px var(--color-terracotta-light);
+}
+
+/* Avatar Text Background */
+.profile-avatar {
+    position: relative;
+    /* Context for absolute text */
+}
+
+.avatar-text-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8rem;
+    /* Large but contained */
+    font-weight: 900;
+
+    /* Glitter/Sparkle Text Effect */
+    background: linear-gradient(45deg,
+            rgba(255, 42, 104, 0.3) 0%,
+            rgba(255, 192, 203, 0.8) 20%,
+            rgba(255, 0, 0, 0.3) 40%,
+            rgba(255, 42, 104, 0.3) 100%);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shineText 3s linear infinite;
+
+    z-index: -1;
+    /* Behind image */
+    pointer-events: none;
+    letter-spacing: 0.5rem;
+    white-space: nowrap;
+    filter: drop-shadow(0 0 10px rgba(226, 114, 91, 0.5));
+    /* Glow */
+}
+
+@keyframes gentleLean {
+
+    0%,
+    100% {
+        transform: rotate(-15deg);
+    }
+
+    50% {
+        transform: rotate(-10deg);
+    }
+
+    /* Slight swaying */
+}
+
+@keyframes shineText {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Running Text (Marquee) */
+.marquee-container {
+    width: 100%;
+    background-color: rgba(226, 114, 91, 0.1);
+    /* Subtle terracotta bg */
+    border-bottom: 1px solid rgba(226, 114, 91, 0.3);
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 0.5rem 0;
+}
+
+.marquee-content {
+    display: inline-block;
+    color: var(--color-terracotta);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Button Style */
+.btn {
+    display: inline-block;
+    background-color: #d50032;
+    /* Strawberry Pink/Red */
+    color: white;
+    /* White Text */
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 1rem;
+    text-decoration: none;
+    border: 2px solid #d50032;
+    box-shadow: 0 4px 10px rgba(213, 0, 50, 0.3);
+    transition: var(--transition);
+}
+
+.btn:hover {
+    background-color: white;
+    color: #d50032;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(213, 0, 50, 0.4);
+}
